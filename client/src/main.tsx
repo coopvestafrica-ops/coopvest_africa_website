@@ -1,12 +1,10 @@
-import { createApp } from "vue";
-import { createPinia } from "pinia";
-import router from "@/router";
-import App from "./App.vue";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
 import "./index.css";
 
-const app = createApp(App);
-
-app.use(createPinia());
-app.use(router);
-
-app.mount("#root");
+ReactDOM.createRoot(document.getElementById("root")!).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
