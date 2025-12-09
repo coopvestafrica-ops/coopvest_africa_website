@@ -1,0 +1,105 @@
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { AuthProvider } from '@/context/AuthContext';
+import { ProtectedRoute, PublicRoute } from '@/components/ProtectedRoute';
+
+// Import your pages here
+// import LoginPage from '@/pages/LoginPage';
+// import SignupPage from '@/pages/SignupPage';
+// import DashboardPage from '@/pages/DashboardPage';
+// import ProfilePage from '@/pages/ProfilePage';
+// import NotFoundPage from '@/pages/NotFoundPage';
+
+/**
+ * Main App Component
+ * Sets up routing and authentication context
+ */
+function App() {
+  return (
+    <Router>
+      <AuthProvider>
+        <Routes>
+          {/* Public Routes */}
+          <Route
+            path="/login"
+            element={
+              <PublicRoute>
+                {/* <LoginPage /> */}
+                <div>Login Page - To be implemented</div>
+              </PublicRoute>
+            }
+          />
+
+          <Route
+            path="/signup"
+            element={
+              <PublicRoute>
+                {/* <SignupPage /> */}
+                <div>Signup Page - To be implemented</div>
+              </PublicRoute>
+            }
+          />
+
+          {/* Protected Routes */}
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                {/* <DashboardPage /> */}
+                <div>Dashboard - To be implemented</div>
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                {/* <ProfilePage /> */}
+                <div>Profile Page - To be implemented</div>
+              </ProtectedRoute>
+            }
+          />
+
+          {/* Loan Routes */}
+          <Route
+            path="/loans"
+            element={
+              <ProtectedRoute>
+                {/* <LoansPage /> */}
+                <div>Loans Page - To be implemented</div>
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/loans/:id"
+            element={
+              <ProtectedRoute>
+                {/* <LoanDetailPage /> */}
+                <div>Loan Detail Page - To be implemented</div>
+              </ProtectedRoute>
+            }
+          />
+
+          {/* Guarantor Routes */}
+          <Route
+            path="/guarantors"
+            element={
+              <ProtectedRoute>
+                {/* <GuarantorsPage /> */}
+                <div>Guarantors Page - To be implemented</div>
+              </ProtectedRoute>
+            }
+          />
+
+          {/* Default Routes */}
+          <Route path="/" element={<Navigate to="/dashboard" replace />} />
+          <Route path="*" element={<div>404 - Page Not Found</div>} />
+        </Routes>
+      </AuthProvider>
+    </Router>
+  );
+}
+
+export default App;
