@@ -18,6 +18,10 @@ import Savings from "./pages/Savings";
 import KYCVerification from "./pages/KYCVerification";
 import TwoFASetup from "./pages/TwoFASetup";
 import PasswordReset from "./pages/PasswordReset";
+import { trpc } from "./lib/trpc";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { httpBatchLink } from "@trpc/client";
+import { useState } from "react";
 
 function Router() {
   return (
@@ -41,18 +45,33 @@ function Router() {
 }
 
 function App() {
+  const [queryClient] = useState(() => new QueryClient());
+  const [trpcClient] = useState(() =>
+    trpc.createClient({
+      links: [
+        httpBatchLink({
+          url: `${window.location.origin}/api/trpc`,
+        }),
+      ],
+    })
+  );
+
   return (
-    <ErrorBoundary>
-      <ThemeProvider defaultTheme="light" switchable>
-        <AuthProvider>
-          <TooltipProvider>
-            <Toaster />
-            <Router />
-            <Chatbot />
-          </TooltipProvider>
-        </AuthProvider>
-      </ThemeProvider>
-    </ErrorBoundary>
+    <trpc.Provider client={trpcClient} queryClient={queryClient}>
+      <QueryClientProvider client={queryClient}>
+        <ErrorBoundary>
+          <ThemeProvider defaultTheme="light" switchable>
+            <AuthProvider>
+              <TooltipProvider>
+                <Toaster />
+                <Router />
+                <Chatbot />
+              </TooltipProvider>
+            </AuthProvider>
+          </ThemeProvider>
+        </ErrorBoundary>
+      </QueryClientProvider>
+    </trpc.Provider>
   );
 }
 
