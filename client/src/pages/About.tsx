@@ -39,12 +39,13 @@ export default function About() {
             </div>
             <div className="rounded-2xl overflow-hidden shadow-2xl h-96">
               <picture>
-  <source srcset="/images/about-team.webp" type="image/webp">
-  <img src="/images/about-team.png" 
-                alt="Coopvest Africa Team - Diverse professionals collaborating"
-                className="w-full h-full object-cover"
-              />
-</picture>
+                <source srcSet="/images/about-team.webp" type="image/webp" />
+                <img
+                  src="/images/about-team.png"
+                  alt="Coopvest Africa Team - Diverse professionals collaborating"
+                  className="w-full h-full object-cover"
+                />
+              </picture>
             </div>
           </div>
         </div>
