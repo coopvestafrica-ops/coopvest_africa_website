@@ -37,11 +37,12 @@ export default function About() {
                 By combining the trust and community-driven values of traditional cooperatives with cutting-edge financial technology, we've created a platform that serves the unique needs of African communities.
               </p>
             </div>
-            <div className="bg-gradient-to-br from-blue-400 to-indigo-600 rounded-2xl p-8 shadow-2xl h-96 flex items-center justify-center">
-              <div className="text-white text-center">
-                <p className="text-6xl font-bold mb-2">2020</p>
-                <p className="text-lg">Founded</p>
-              </div>
+            <div className="rounded-2xl overflow-hidden shadow-2xl h-96">
+              <img 
+                src="/images/about-team.png" 
+                alt="Coopvest Africa Team - Diverse professionals collaborating"
+                className="w-full h-full object-cover"
+              />
             </div>
           </div>
         </div>
