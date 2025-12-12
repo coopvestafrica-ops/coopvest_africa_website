@@ -10,6 +10,7 @@ import Testimonials from "@/components/sections/Testimonials";
 import FAQ from "@/components/sections/FAQ";
 import CTA from "@/components/sections/CTA";
 import Footer from "@/components/Footer";
+import Process from "@/components/sections/Process";
 
 export default function Home() {
   const { user, isAuthenticated, logout } = useAuth();
@@ -25,6 +26,9 @@ export default function Home() {
 
       {/* Features Section */}
       <Features />
+
+      {/* Process Section */}
+      <Process />
 
       {/* Testimonials Section */}
       <Testimonials />
