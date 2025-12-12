@@ -29,9 +29,10 @@ export default function Login() {
     try {
       await login(email, password, "member");
       setSuccess(true);
+      // Redirect to member dashboard after successful login
       setTimeout(() => {
         setLocation("/member/dashboard");
-      }, 1500);
+      }, 1000);
     } catch (err) {
       setError("Invalid email or password");
     } finally {
@@ -44,11 +45,12 @@ export default function Login() {
     try {
       await login(`demo.${role}@coopvest.africa`, "password123", role);
       setSuccess(true);
+      // Redirect to appropriate dashboard based on role
       setTimeout(() => {
         if (role === "member") setLocation("/member/dashboard");
         else if (role === "admin") setLocation("/admin");
         else setLocation("/super-admin");
-      }, 1500);
+      }, 1000);
     } catch (err) {
       setError("Demo login failed");
     } finally {

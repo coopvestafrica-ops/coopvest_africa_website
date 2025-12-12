@@ -19,6 +19,22 @@ interface AuthContextType {
   login: (email: string, password: string, role: UserRole) => Promise<void>;
   logout: () => void;
   setUser: (user: User | null) => void;
+  getRedirectUrl: (role?: UserRole) => string;
+}
+
+/**
+ * Get the appropriate redirect URL based on user role
+ */
+export function getRedirectUrlByRole(role: UserRole): string {
+  switch (role) {
+    case "admin":
+      return "/admin";
+    case "super_admin":
+      return "/super-admin";
+    case "member":
+    default:
+      return "/member/dashboard";
+  }
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -77,6 +93,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     login,
     logout,
     setUser,
+    getRedirectUrl: (role) => getRedirectUrlByRole(role || user?.role || "member"),
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

@@ -3,6 +3,7 @@ import { Menu, X, Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/contexts/ThemeContext";
 import { APP_LOGO, APP_TITLE } from "@/const";
+import { Link } from "wouter";
 
 interface NavigationProps {
   user?: any;
@@ -89,12 +90,16 @@ export default function Navigation({ user, isAuthenticated, logout }: Navigation
               </div>
             ) : (
               <div className="hidden md:flex items-center space-x-3">
-                <Button variant="outline" size="sm">
-                  Login
-                </Button>
-                <Button size="sm" className="bg-blue-600 hover:bg-blue-700">
-                  Register
-                </Button>
+                <Link href="/login">
+                  <Button variant="outline" size="sm" asChild>
+                    <span>Login</span>
+                  </Button>
+                </Link>
+                <Link href="/register">
+                  <Button size="sm" className="bg-blue-600 hover:bg-blue-700" asChild>
+                    <span>Register</span>
+                  </Button>
+                </Link>
               </div>
             )}
 
@@ -126,12 +131,16 @@ export default function Navigation({ user, isAuthenticated, logout }: Navigation
             ))}
             {!isAuthenticated && (
               <div className="pt-2 space-y-2 border-t border-slate-200 dark:border-slate-800">
-                <Button variant="outline" size="sm" className="w-full">
-                  Login
-                </Button>
-                <Button size="sm" className="w-full bg-blue-600 hover:bg-blue-700">
-                  Register
-                </Button>
+                <Link href="/login">
+                  <Button variant="outline" size="sm" className="w-full" asChild>
+                    <span>Login</span>
+                  </Button>
+                </Link>
+                <Link href="/register">
+                  <Button size="sm" className="w-full bg-blue-600 hover:bg-blue-700" asChild>
+                    <span>Register</span>
+                  </Button>
+                </Link>
               </div>
             )}
           </div>
