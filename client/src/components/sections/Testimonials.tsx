@@ -9,7 +9,7 @@ const testimonials = [
     location: "Lagos, Nigeria",
     content: "Coopvest Africa has transformed my business finances. The loan process was seamless and the interest rates are unbeatable. Highly recommended!",
     rating: 5,
-    avatar: "AO",
+    image: "/images/testimonial-member-1.png",
   },
   {
     name: "Kwame Mensah",
@@ -17,7 +17,7 @@ const testimonials = [
     location: "Accra, Ghana",
     content: "I've been saving with Coopvest for 2 years now. The platform is secure, transparent, and my savings have grown significantly with competitive interest rates.",
     rating: 5,
-    avatar: "KM",
+    image: "/images/testimonial-member-2.png",
   },
   {
     name: "Zainab Hassan",
@@ -25,7 +25,7 @@ const testimonials = [
     location: "Nairobi, Kenya",
     content: "The investment pools offered by Coopvest are fantastic. I've diversified my portfolio and the returns have exceeded my expectations.",
     rating: 5,
-    avatar: "ZH",
+    image: "/images/testimonial-member-3.png",
   },
   {
     name: "Chidi Nwosu",
@@ -33,7 +33,7 @@ const testimonials = [
     location: "Enugu, Nigeria",
     content: "As an educator, I appreciate the financial literacy resources Coopvest provides. The platform made it easy for me to save for my children's education.",
     rating: 5,
-    avatar: "CN",
+    image: "/images/testimonial-member-1.png",
   },
 ];
 
@@ -83,9 +83,11 @@ export default function Testimonials() {
 
             {/* Author */}
             <div className="flex items-center gap-4 mb-8 pb-8 border-b border-slate-200 dark:border-slate-700">
-              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-indigo-600 flex items-center justify-center text-white font-bold">
-                {current.avatar}
-              </div>
+              <img 
+                src={current.image} 
+                alt={current.name}
+                className="w-12 h-12 rounded-full object-cover"
+              />
               <div>
                 <p className="font-semibold text-slate-900 dark:text-white">
                   {current.name}
