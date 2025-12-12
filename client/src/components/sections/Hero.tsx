@@ -60,11 +60,13 @@ export default function Hero() {
           {/* Right Image */}
           <div className="relative">
             <div className="rounded-2xl overflow-hidden shadow-2xl">
-              <img 
-                src="/images/hero-section.png" 
+              <picture>
+  <source srcset="/images/hero-section.webp" type="image/webp">
+  <img src="/images/hero-section.png" 
                 alt="Coopvest Africa Team - Professional Financial Collaboration"
                 className="w-full h-auto object-cover"
               />
+</picture>
             </div>
           </div>
         </div>

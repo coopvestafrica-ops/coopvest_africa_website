@@ -20,11 +20,13 @@ export default function CTA() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Banner Image Section */}
         <div className="mb-12 rounded-2xl overflow-hidden shadow-2xl">
-          <img
-            src="/images/cta-banner.png"
+          <picture>
+  <source srcset="/images/cta-banner.webp" type="image/webp">
+  <img src="/images/cta-banner.png"
             alt="Empowering Your Financial Journey"
             className="w-full h-auto object-cover"
           />
+</picture>
         </div>
 
         {/* Newsletter Section */}
