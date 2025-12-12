@@ -57,18 +57,14 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right Image Placeholder */}
+          {/* Right Image */}
           <div className="relative">
-            <div className="bg-gradient-to-br from-blue-400 to-indigo-600 rounded-2xl p-8 shadow-2xl">
-              <div className="bg-white dark:bg-slate-800 rounded-lg p-6 space-y-4">
-                <div className="h-4 bg-slate-200 dark:bg-slate-700 rounded w-3/4"></div>
-                <div className="h-4 bg-slate-200 dark:bg-slate-700 rounded w-1/2"></div>
-                <div className="space-y-3 pt-4">
-                  <div className="h-12 bg-blue-100 dark:bg-slate-700 rounded"></div>
-                  <div className="h-12 bg-blue-100 dark:bg-slate-700 rounded"></div>
-                  <div className="h-12 bg-blue-100 dark:bg-slate-700 rounded"></div>
-                </div>
-              </div>
+            <div className="rounded-2xl overflow-hidden shadow-2xl">
+              <img 
+                src="/images/hero-section.png" 
+                alt="Coopvest Africa Team - Professional Financial Collaboration"
+                className="w-full h-auto object-cover"
+              />
             </div>
           </div>
         </div>
