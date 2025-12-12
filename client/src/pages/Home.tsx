@@ -11,6 +11,7 @@ import FAQ from "@/components/sections/FAQ";
 import CTA from "@/components/sections/CTA";
 import Footer from "@/components/Footer";
 import Process from "@/components/sections/Process";
+import AppShowcase from "@/components/sections/AppShowcase";
 
 export default function Home() {
   const { user, isAuthenticated, logout } = useAuth();
@@ -29,6 +30,9 @@ export default function Home() {
 
       {/* Process Section */}
       <Process />
+
+      {/* App Showcase Section */}
+      <AppShowcase />
 
       {/* Testimonials Section */}
       <Testimonials />
