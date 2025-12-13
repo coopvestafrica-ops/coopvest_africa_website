@@ -1,13 +1,28 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useLocation } from "wouter";
 
 export default function Hero() {
   const [isVisible, setIsVisible] = useState(false);
+  const [, setLocation] = useLocation();
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
+
+  const handleGetStarted = () => {
+    // Navigate to register page
+    setLocation("/register");
+  };
+
+  const handleLearnMore = () => {
+    // Scroll to services section
+    const servicesSection = document.getElementById("services");
+    if (servicesSection) {
+      servicesSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <section id="home" className="relative overflow-hidden bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-slate-900 dark:to-slate-800 py-20 sm:py-32">
@@ -48,6 +63,7 @@ export default function Hero() {
               <Button
                 size="lg"
                 className="bg-blue-600 hover:bg-blue-700 text-white rounded-lg flex items-center justify-center gap-2 group transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/50 hover:scale-105"
+                onClick={handleGetStarted}
               >
                 Get Started 
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -56,6 +72,7 @@ export default function Hero() {
                 size="lg"
                 variant="outline"
                 className="rounded-lg border-slate-300 dark:border-slate-600 group transition-all duration-300 hover:border-blue-500 hover:bg-blue-50 dark:hover:bg-blue-950/20 hover:shadow-lg hover:scale-105"
+                onClick={handleLearnMore}
               >
                 Learn More
               </Button>
