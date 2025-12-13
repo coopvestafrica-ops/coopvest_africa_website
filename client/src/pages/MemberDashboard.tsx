@@ -3,6 +3,8 @@ import ProtectedRoute from "@/components/ProtectedRoute";
 import { CreditCard, TrendingUp, PiggyBank, ArrowUpRight, ArrowDownLeft, Plus, Eye, EyeOff, Settings, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { formatNaira } from "@/lib/currency";
+import { isNewMember, getMemberStatusText, getMemberStatusColor } from "@/lib/memberStatus";
 
 function MemberDashboardContent() {
   const { user, logout } = useAuthContext();
@@ -16,6 +18,16 @@ function MemberDashboardContent() {
     loanBalance: 8500.00,
     monthlyContribution: 2500.00,
   };
+
+  // Member status data
+  const memberInfo = {
+    joinDate: new Date(new Date().getTime() - 180 * 24 * 60 * 60 * 1000), // 6 months ago (old member)
+    accountStatus: "active" as const,
+  };
+
+  const isNew = isNewMember(memberInfo.joinDate);
+  const memberStatus = getMemberStatusText(memberInfo);
+  const statusColor = getMemberStatusColor(memberInfo.accountStatus);
 
   const recentTransactions = [
     { id: 1, type: "deposit", description: "Monthly Contribution", amount: 2500, date: "Nov 2, 2024", status: "completed" },
@@ -77,7 +89,7 @@ function MemberDashboardContent() {
                 </p>
                 <div className="flex items-center gap-2 mt-2">
                   <p className="text-3xl font-bold text-slate-900 dark:text-white">
-                    {showBalance ? `$${accountData.totalBalance.toLocaleString('en-US', { minimumFractionDigits: 2 })}` : "••••••"}
+                    {showBalance ? formatNaira(accountData.totalBalance) : "••••••"}
                   </p>
                   <button
                     onClick={() => setShowBalance(!showBalance)}
@@ -101,7 +113,7 @@ function MemberDashboardContent() {
                   Savings Balance
                 </p>
                 <p className="text-3xl font-bold text-slate-900 dark:text-white mt-2">
-                  ${accountData.savingsBalance.toLocaleString('en-US', { minimumFractionDigits: 2 })}
+                  {formatNaira(accountData.savingsBalance)}
                 </p>
               </div>
               <div className="p-3 bg-green-100 dark:bg-green-900/30 rounded-lg">
@@ -121,7 +133,7 @@ function MemberDashboardContent() {
                   Loan Balance
                 </p>
                 <p className="text-3xl font-bold text-slate-900 dark:text-white mt-2">
-                  ${accountData.loanBalance.toLocaleString('en-US', { minimumFractionDigits: 2 })}
+                  {formatNaira(accountData.loanBalance)}
                 </p>
               </div>
               <div className="p-3 bg-orange-100 dark:bg-orange-900/30 rounded-lg">
@@ -141,7 +153,7 @@ function MemberDashboardContent() {
                   Next Contribution
                 </p>
                 <p className="text-3xl font-bold text-slate-900 dark:text-white mt-2">
-                  ${accountData.monthlyContribution.toLocaleString('en-US', { minimumFractionDigits: 2 })}
+                  {formatNaira(accountData.monthlyContribution)}
                 </p>
               </div>
               <div className="p-3 bg-purple-100 dark:bg-purple-900/30 rounded-lg">
@@ -209,11 +221,11 @@ function MemberDashboardContent() {
                       </div>
                       <div>
                         <p className="text-sm text-slate-600 dark:text-slate-400 mb-1">Original Amount</p>
-                        <p className="font-semibold text-slate-900 dark:text-white">${activeLoan.amount.toLocaleString()}</p>
+                        <p className="font-semibold text-slate-900 dark:text-white">{formatNaira(activeLoan.amount)}</p>
                       </div>
                       <div>
                         <p className="text-sm text-slate-600 dark:text-slate-400 mb-1">Remaining Balance</p>
-                        <p className="font-semibold text-slate-900 dark:text-white">${activeLoan.balance.toLocaleString()}</p>
+                        <p className="font-semibold text-slate-900 dark:text-white">{formatNaira(activeLoan.balance)}</p>
                       </div>
                       <div>
                         <p className="text-sm text-slate-600 dark:text-slate-400 mb-1">Interest Rate</p>
@@ -221,7 +233,7 @@ function MemberDashboardContent() {
                       </div>
                       <div>
                         <p className="text-sm text-slate-600 dark:text-slate-400 mb-1">Next Payment</p>
-                        <p className="font-semibold text-slate-900 dark:text-white">${activeLoan.nextPayment.toLocaleString()}</p>
+                        <p className="font-semibold text-slate-900 dark:text-white">{formatNaira(activeLoan.nextPayment)}</p>
                       </div>
                       <div>
                         <p className="text-sm text-slate-600 dark:text-slate-400 mb-1">Due Date</p>
@@ -273,7 +285,7 @@ function MemberDashboardContent() {
                               ? "text-green-600 dark:text-green-400"
                               : "text-red-600 dark:text-red-400"
                           }`}>
-                            {txn.type === "deposit" || txn.type === "interest" ? "+" : "-"}${txn.amount.toLocaleString('en-US', { minimumFractionDigits: 2 })}
+                            {txn.type === "deposit" || txn.type === "interest" ? "+" : "-"}{formatNaira(txn.amount)}
                           </td>
                           <td className="px-4 py-3 text-sm text-slate-600 dark:text-slate-400">
                             {txn.date}
